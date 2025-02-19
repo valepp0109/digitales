@@ -7,7 +7,6 @@
 - 🎓 Actualmente cursando mi carrera en **Ingeniería Electrónica**.
 - 💡 Me encanta aprender sobre nuevas tecnologías y aplicarlas en proyectos prácticos.
 - 🌱 Estoy enfocada en áreas como:
-  - **Sistemas embebidos**
   - **Automatización y control**
   - **Diseño de circuitos**
 - 🛠️ Siempre estoy buscando oportunidades para colaborar en proyectos innovadores.
