@@ -9,7 +9,5 @@
 - 🌱 Estoy enfocada en áreas como:
   - **Sistemas embebidos**
   - **Automatización y control**
-  - **IoT (Internet de las Cosas)**
   - **Diseño de circuitos**
-  - **Programación en C, Python y MATLAB**
 - 🛠️ Siempre estoy buscando oportunidades para colaborar en proyectos innovadores.
