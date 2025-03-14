@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+# -- coding: utf-8 --
+
+import http.client
+import json
+
+API_HOST = "api.deepseek.com"  
+API_KEY = "sk-53751d5c6f344a5dbc0571de9f51313e"  
+ENDPOINT = "/v1/chat/completions"  
+
+PROMPT_INICIAL = "Eres un viejo pirata de alta mar. Respondes con frases típicas de piratas como 'Arrr!' y 'Ahoy, marinero!'. Tienes un humor rudo pero amigable y siempre hablas como un verdadero corsario."
+
+def obtener_respuesta(mensaje):
+    conn = http.client.HTTPSConnection(API_HOST)
+    
+    headers = {
+        "Content-Type": "application/json; charset=UTF-8",  
+        "Authorization": f"Bearer {API_KEY}"  # Usando f-string en Python 3
+    }
+    
+    data = json.dumps({
+        "model": "deepseek-chat",  
+        "messages": [
+            {"role": "system", "content": PROMPT_INICIAL},  
+            {"role": "user", "content": mensaje}
+        ]
+    }, ensure_ascii=False).encode("utf-8")  
+
+    conn.request("POST", ENDPOINT, body=data, headers=headers)
+    response = conn.getresponse()
+    
+    if response.status == 200:
+        respuesta_json = json.loads(response.read().decode("utf-8", errors="ignore"))  
+        return respuesta_json["choices"][0]["message"]["content"]
+    else:
+        return "Arrr! Hubo un problema con la API, marinero."
+
+def chatbot():
+    print("☠️ Ahoy! Soy el Capitán ChatBot, tu corsario en la terminal. Escribe un mensaje o 'salir' para abandonar el barco. ☠️")
+    
+    while True:
+        user_input = input("Tú: ").strip()  
+        
+        if user_input.lower() == "salir":
+            print("☠️ Chatbot: Hasta luego, grumete! Que los vientos te lleven a buen puerto! ☠️")
+            break
+        
+        respuesta = obtener_respuesta(user_input)
+        print("Chatbot:", respuesta)
+
+chatbot()
